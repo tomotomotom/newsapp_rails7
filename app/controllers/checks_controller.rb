@@ -9,6 +9,10 @@ class ChecksController < ApplicationController
     redirect_to controller: :articles, action: :show
   end
 
+  def revert_check
+    check.find_by(user_id: current_user.id,article_id: @article.id).destroy
+  end
+
   def set_article
     @article = Article.find(params[:id])
   end
